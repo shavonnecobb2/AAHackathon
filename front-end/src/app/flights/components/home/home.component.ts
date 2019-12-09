@@ -22,10 +22,13 @@ export class HomeComponent implements OnInit {
       destination: '',
       date: ''
     });
+
+    this.flights = [];
   
   }
   
-  sendToAPI() {
+  calculate() {
+    
     let formObj = this.form.getRawValue();
   
     let serializedForm = JSON.stringify(formObj);
