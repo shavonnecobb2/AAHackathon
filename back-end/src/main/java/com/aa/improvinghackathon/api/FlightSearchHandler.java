@@ -30,11 +30,24 @@ public class FlightSearchHandler {
                 .forEach(code -> allFlights.addAll(flightEngineClient.retrieveFlights(flightSearch.getDate(), code)));
 
         // TODO: BUILD A TREE
-        
+        allFlights.stream()
+                .filter(flight -> flight.getOrigin().getCode().equals(flightSearch.getOrigin()))
+                .forEach(flight -> {
+                    Itinerary i = new Itinerary(new ArrayList<>());
+                    i.addFlight(flight);
+                });
 
-        return allFlights.stream()
-                .map(flight -> new Itinerary(Arrays.asList(flight)))
-                .collect(Collectors.toList());
+        for (Itinerary i : itineraries) {
+            if (i.getFlights().get(i.getFlights().size() - 1).getDestination().equals(flightSearch.getDestination())) {
+                for (Flight f : allFlights) {
+                    if (f.getDestination().equals(flightSearch.getDestination())) {
+                        i.addFlight(f);
+                    }
+                }
+            }
+        }
+
+        return itineraries;
     }
 
 }

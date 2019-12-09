@@ -13,6 +13,10 @@ public class Itinerary {
         this.flights = flights;
     }
 
+    public void addFlight(Flight flight) {
+        flights.add(flight);
+    }
+
     public String getId() {
         return id;
     }
