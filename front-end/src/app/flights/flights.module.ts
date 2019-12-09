@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import * as components from './components';
+import { FlightsRoutingModule } from './flights-routing.module'
+
 
 import {AppRoutingModule} from './flights-routing.module';
 
@@ -9,14 +11,13 @@ import * as components from './components';
 
 @NgModule({
   declarations: [
-    components.HomeComponent,
     components.CheckoutComponent,
+    components.HomeComponent,
     components.ProfileComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    FormsModule
+    FlightsRoutingModule
   ]
 })
 export class FlightsModule { }
