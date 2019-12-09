@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FlightsService } from 'src/app/service';
-import { Flight } from 'src/app/model.ts';
+import { Flight, Itinerary } from 'src/app/model.ts';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +10,22 @@ import { Flight } from 'src/app/model.ts';
 })
 export class HomeComponent implements OnInit {
 
-  flights: Flight[];
+  itineraries: Itinerary[];
   form: FormGroup;
+  flightArray: Flight[];
   
   constructor(private fbuilder: FormBuilder,
     private flightsService: FlightsService) { }
   
   ngOnInit() {
     this.form = this.fbuilder.group({
-      origin: '',
-      destination: '',
-      date: ''
+      origin: 'DFW',
+      destination: 'LAX',
+      date: '2020-01-01'
     });
 
-    this.flights = [];
-  
   }
+
   
   calculate() {
     
@@ -34,6 +34,6 @@ export class HomeComponent implements OnInit {
     let serializedForm = JSON.stringify(formObj);
   
     this.flightsService.search(serializedForm)
-      .then(flights => this.flights = flights);
+      .then(itineraries => this.itineraries = itineraries);
   }
 }
