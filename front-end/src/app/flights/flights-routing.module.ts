@@ -7,16 +7,16 @@ import { ProfileComponent } from './components/profile/profile.component';
 import * as components from './components';
 
 const routes: Routes = [
+  {path:'', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: components.HomeComponent},
     {path: 'checkout', component: components.CheckoutComponent},
-    {path: 'profile', component: components.ProfileComponent},
-    {path:'', redirectTo: 'home', pathMatch: 'full'}
+    {path: 'profile', component: components.ProfileComponent}
 ];
 
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class FlightsRoutingModule { }
