@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Flight } from '../model.ts';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Flight, Itinerary } from '../model.ts';
 
 
 @Injectable({
@@ -11,10 +11,12 @@ export class FlightsService {
   constructor(private httpClient: HttpClient) { }
 
   //searchParams input is string of a JSON object
-  search(searchParams: string): Promise<Flight[]> {
-    return this.httpClient.post<Flight[]>("localhost:4200/flights/search", searchParams)
+  search(searchParams: string): Promise<Itinerary[]> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Itinerary[]>("http://localhost:8080/flights/search", searchParams, {headers: headers})
       .toPromise()
-      .then(flights => (flights || []).map(flight => new Flight(flight)));
+      .then(i => (i || []).map(i => new Itinerary(i)));
   }
 
 //   create(account: Account): Promise<Account> {

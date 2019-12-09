@@ -62,14 +62,8 @@
 
 </form>
 
-<div>{{flights | json}} </div>
-<div>Origin ---> {{form.value.origin}}</div>
-<div>Destination ---> {{form.value.destination }}</div>
-<div>Date ---> {{form.value.date }}</div>
 
-
-<div *ngIf = "flights">
-  <div *ngFor = "let flight of flights"> </div>
+<div *ngIf = "itineraries">
   <div class="row tbl-calc">
     <div class="col-9">
       <table class="table table-striped table-condensed">
@@ -81,15 +75,21 @@
             <th>Duration</th>
           </tr>
         </thead>
+        
         <tbody>
-          <tr>
-            <td>{{flight.flightNum}}</td>
-            <td>{{flight.origin.city}}</td>
-            <td>{{flight.destination.city}}</td>
-            <td>{{flight.duration.hours}} hrs {{flight.duration.mins}} mins</td>
+            
+        <div *ngFor = "let i of itineraries">
+          <tr *ngFor = "let f of i.flights">
+            <td>{{f.flightNumber}}</td>
+            <td>{{f.origin.city}}</td>
+            <td>{{f.destination.city}}</td>
+            <td>{{f.duration.hours}} hrs {{f.duration.mins}} mins</td>
           </tr>
+        </div>
         </tbody>
-      </table>
+        
+        </table>
+      
     </div>
 
     <div class="col-3">
@@ -98,6 +98,7 @@
       </button>
     </div>
   </div>
-</div>
+  </div>
+  
 
 </div>
