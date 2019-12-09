@@ -10,6 +10,8 @@ public class ItineraryView {
 
     private final Itinerary itinerary;
 
+    private String recordLocator;
+
     public ItineraryView(final Itinerary itinerary) {
         this.itinerary = itinerary;
     }
@@ -22,6 +24,14 @@ public class ItineraryView {
         return itinerary.getFlights().stream()
                 .map(this::mapFlights)
                 .collect(Collectors.toList());
+    }
+
+    public String getRecordLocator() {
+        return recordLocator;
+    }
+
+    public void setRecordLocator(final String recordLocator) {
+        this.recordLocator = recordLocator;
     }
 
     private FlightView mapFlights(final Flight flight) {

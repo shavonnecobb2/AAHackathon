@@ -1,5 +1,6 @@
 package com.aa.improvinghackathon.domain;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,12 @@ public class Itinerary {
 
     public List<Flight> getFlights() {
         return flights;
+    }
+
+    public Duration getDuration() {
+        Duration duration = Duration.ZERO;
+        flights.stream().forEach(flight -> duration.plus(flight.getDuration()));
+        return duration;
     }
 
 }
