@@ -17,21 +17,11 @@ public class FlightSearchHandler {
         this.flightEngineClient = flightEngineClient;
     }
 
-    public List<ItineraryView> flightSearch(final FlightSearch flightSearch) {
-        return retrieveFlights(flightSearch).stream()
-                .map(this::mapView)
-                .collect(Collectors.toList());
-    }
-
-    public List<Itinerary> retrieveFlights(final FlightSearch flightSearch) {
+    public List<Itinerary> flightSearch(final FlightSearch flightSearch) {
         return flightEngineClient.retrieveFlights(flightSearch.getDate(), flightSearch.getOrigin())
                 .stream()
                 .map(flight -> new Itinerary(Arrays.asList(flight)))
                 .collect(Collectors.toList());
-    }
-
-    private ItineraryView mapView(final Itinerary itinerary) {
-        return new ItineraryView(itinerary);
     }
 
 }
