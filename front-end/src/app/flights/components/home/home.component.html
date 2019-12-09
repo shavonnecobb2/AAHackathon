@@ -1,79 +1,72 @@
 <div class="container aa-container">
   <div class="row aa-header">
     <div class="col-12">
-      Homepage
+      Flight Booking Page
     </div>
   </div>
 
-  <div class="row aa-div">
+  <div class="row aa-enter-record">
     <div class="col-4">
       <form class="aa-record">
         <div class="form-group">
-            <label class="control-label">Please enter your record number for flight details:</label>
+          <label class="control-label">Flight Record Locator:</label>
         </div>
       </form>
-    </div>
-    <div class="col-4">
-      <form class="aa-search">
-        <div class="form-group">
-          <input type="text" class="form-control" />
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <form [formGroup] = "form">
-
-  <div class="row">
-    <div class="col">
-      <div class="aa-calc-origin">
-        <div class=" form-group">
-          <label class="control-label col-sm-5">Origin:</label>
-          <input type="text" class="form-control" formControlName = "origin" />
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="aa-calc-destination">
-        <div class=" form-group">
-          <label class="control-label col-sm-5">Destination:</label>
-          <input type="text" class="form-control" formControlName = "destination"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="aa-calc-date">
-        <div class=" form-group">
-          <label class="control-label col-sm-5">Date:</label>
-          <input type="text" class="form-control" formControlName = "date" />
-        </div>
+      <div class="form-group">
+        <input type="text" class="form-control" />
       </div>
     </div>
   </div>
 
-  <div class="row aa-div">
-    <div class="col">
-      <button type="submit" class="btn btn-lg btn-success btn-block" (click) = "calculate($event)">
-        Search
-      </button>
-    </div>
+  <div class="aa-img">
+
   </div>
 
-<<<<<<< HEAD
-  <div class="row justify-content-around">
+  <form [formGroup]="form">
+
+    <div class="row aa-search">
+      <div class="col">
+        <div class="aa-calc-origin">
+          <div class=" form-group">
+            <label class="control-label">Origin:</label>
+            <input type="text" class="form-control" formControlName="origin" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="aa-calc-destination">
+          <div class=" form-group">
+            <label class="control-label">Destination:</label>
+            <input type="text" class="form-control" formControlName="destination" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="aa-calc-date">
+          <div class=" form-group">
+            <label class="control-label">Date:</label>
+            <input type="text" class="form-control" formControlName="date" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-md btn-success" (click)="calculate($event)">
+          Search
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <div>{{flights | json}} </div>
+  <div class="row aa-table">
     <div class="col">
       <table class="table table-striped">
-=======
-
-</form>
-
-<div>{{flights | json}} </div>
-  <div class="row tbl-calc">
-    <div class="col-9">
-      <table class="table table-striped table-condensed">
->>>>>>> b535bad4f7e313f110832c8ca8c30bfe3166e979
         <thead>
           <tr>
             <th>PLACEHOLDER_HEADER</th>
@@ -94,9 +87,11 @@
         </tbody>
       </table>
     </div>
+  </div>
 
+  <div class="row">
     <div class="col">
-      <button type="submit" class="btn btn-sm btn-success">
+      <button type="submit" class="btn btn-md btn-success">
         Buy
       </button>
     </div>
