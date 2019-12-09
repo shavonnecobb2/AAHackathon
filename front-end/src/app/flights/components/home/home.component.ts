@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FlightsService } from 'src/app/service';
 import { Flight } from 'src/app/model.ts';
+import { FlightsModule } from '../../flights.module';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +24,10 @@ export class HomeComponent implements OnInit {
       date: ''
     });
 
-    this.flights = [];
-  
+    this.flights = null;
+
   }
+
   
   calculate() {
     
