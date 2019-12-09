@@ -1,19 +1,20 @@
 package com.aa.improvinghackathon.api;
 
 import com.aa.improvinghackathon.domain.Itinerary;
-import com.aa.improvinghackathon.infrastructure.service.flights.response.Flight;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.aa.improvinghackathon.infrastructure.service.flights.ItineraryRepository;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.HandlerResultHandler;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
+
+    private final ItineraryRepository itineraryRepository = new ItineraryRepository();
 
     private final ViewMapper viewMapper = new ViewMapper();
 
@@ -30,17 +31,38 @@ public class FlightController {
         return viewMapper.mapItinerary(itineraries);
     }
 
-    @PostMapping("/book")
-    public Object book() {
-
-        return new Object();
+    @GetMapping("/confirm/{id}")
+    public List<FlightView> search(@PathVariable String id, HttpSession httpSession) {
+        return new ItineraryView(getItineraryFromSession(id, httpSession)).getFlights();
     }
 
-    @PostMapping("/retrieve")
-    public Object retrieve() {
-
-        return new Object();
+    @GetMapping("/book/{id}")
+    public Object book(@PathVariable String id, HttpSession httpSession) {
+        Itinerary itinerary = getItineraryFromSession(id, httpSession);
+        String recordLocator = itineraryRepository.add(itinerary);
+        ItineraryView itineraryView = new ItineraryView(itinerary);
+        itineraryView.setRecordLocator(recordLocator);
+        return itineraryView;
     }
 
+    @GetMapping("/retrieve/{recordLocator}")
+    public Object retrieve(@PathVariable String recordLocator) {
+        Itinerary itinerary = itineraryRepository.get(recordLocator);
+        ItineraryView itineraryView = new ItineraryView(itinerary);
+        itineraryView.setRecordLocator(recordLocator);
+        return itineraryView;
+    }
+
+    private Itinerary getItineraryFromSession(final String id, final HttpSession session) {
+        List<Itinerary> itineraries = (List<Itinerary>) session.getAttribute("itineraries");
+        return itineraries.stream().filter(itinerary -> itinerary.getId().equals(id)).findFirst().orElseThrow();
+    }
+
+    @ExceptionHandler
+    public Map<String, String> errorHandler(final Exception e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", e.getMessage());
+        return error;
+    }
 
 }
