@@ -10,20 +10,21 @@
       <table class="table aa-table table-bordered">
         <thead>
           <tr>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
+            <th>Flight ID's</th>
+            <th>Flight Origins</th>
+            <th>Flight Destinations</th>
+            <th>Flight Durations</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let flight of flights">
           <tr>
             <td>
               Test
             </td>
-            <td>PLACEHOLDER</td>
-            <td>PLACEHOLDER</td>
-            <td>PLACEHOLDER</td>
+            <td>{{flight.id}}</td>
+            <td>{{flight.origin}}</td>
+            <td>{{flight.destination}}</td> 
+            <td>{{flight.duration}}</td>
           </tr>
         </tbody>
       </table>
@@ -32,38 +33,40 @@
 
   <div class="row aa-price float-right">
     <div class="col">
-      <p>Total price: PLACEHOLDER</p>
+      <p>Total price: {{flight.price}}</p>
     </div>
   </div>
 
   <div class="row cust-info">
     <div class="col">
       <h3>Please enter the following information:</h3>
-      <form>
+      <form [formGroup]="checkoutForm"
+      (ngSubmit)="save()">
         <div class="row">
           <div class="col">
-            <div class=" form-group">
+            <div class="form-group">
               <label class="control-label">First Name:</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" formControlName="firstName" />
             </div>
           </div>
 
           <div class="col">
-            <div class=" form-group">
+            <div class="form-group">
               <label class="control-label">Last Name:</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" formControlName="lastName" />
             </div>
           </div>
 
           <div class="col">
             <div class=" form-group">
               <label class="control-label">Email:</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control"  formControlName="email"/>
             </div>
           </div>
         </div>
       </form>
     </div>
+
   </div>
 
   <div class="row">

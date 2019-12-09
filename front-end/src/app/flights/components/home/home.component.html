@@ -1,98 +1,103 @@
-<div class="container aa-container">
+<div class="container">
   <div class="row aa-header">
     <div class="col-12">
-      Flight Booking Page
+      Homepage
     </div>
   </div>
-
-  <div class="row aa-enter-record">
+  <div class="row text-center">
     <div class="col-4">
       <form class="aa-record">
         <div class="form-group">
-          <label class="control-label">Flight Record Locator:</label>
-        <input type="text" class="form-control" />
-      </div>
+            <label class="control-label">Please enter your record number for flight details:</label>
+        </div>
+      </form>
+    </div>
+    <div class="col-4">
+      <form class="aa-search">
+        <div class="form-group">
+          <input type="text" class="form-control" />
+        </div>
       </form>
     </div>
   </div>
 
-  <div class="aa-img">
+  <form [formGroup] = "form">
 
-  </div>
-
-  <form [formGroup]="form">
-
-    <div class="row aa-search">
-      <div class="col">
-        <div class="aa-calc-origin">
-          <div class=" form-group">
-            <label class="control-label">Origin:</label>
-            <input type="text" class="form-control" formControlName="origin" />
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="aa-calc-destination">
-          <div class=" form-group">
-            <label class="control-label">Destination:</label>
-            <input type="text" class="form-control" formControlName="destination" />
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="aa-calc-date">
-          <div class=" form-group">
-            <label class="control-label">Date:</label>
-            <input type="text" class="form-control" formControlName="date" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <button type="submit" class="btn btn-md btn-success aa-btn" (click)="calculate($event)">
-          Search
-        </button>
-      </div>
-    </div>
-
-  </form>
-
-  <div>{{flights | json}} </div>
-  <div class="row aa-table">
+  <div class="row">
     <div class="col">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
-            <th>PLACEHOLDER_HEADER</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Test
-            </td>
-            <td>PLACEHOLDER</td>
-            <td>PLACEHOLDER</td>
-            <td>PLACEHOLDER</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="aa-calc-origin">
+        <div class=" form-group">
+          <label class="control-label col-sm-5">Origin:</label>
+          <input type="text" class="form-control" formControlName = "origin" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="aa-calc-destination">
+        <div class=" form-group">
+          <label class="control-label col-sm-5">Destination:</label>
+          <input type="text" class="form-control" formControlName = "destination"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="aa-calc-date">
+        <div class=" form-group">
+          <label class="control-label col-sm-5">Date:</label>
+          <input type="text" class="form-control" formControlName = "date" />
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <button type="submit" class="btn btn-md btn-success aa-btn">
+      <button type="submit" class="btn btn-lg btn-success btn-block" (click) = "calculate($event)">
+        Search
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<div *ngIf = "itineraries">
+  <div class="row tbl-calc">
+    <div class="col-9">
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+            
+        <div *ngFor = "let i of itineraries">
+          <tr *ngFor = "let f of i.flights">
+            <td>{{f.flightNumber}}</td>
+            <td>{{f.origin.city}}</td>
+            <td>{{f.destination.city}}</td>
+            <td>{{f.duration.hours}} hrs {{f.duration.mins}} mins</td>
+          </tr>
+        </div>
+        </tbody>
+        </table>
+      
+    </div>
+
+    <div class="col-3">
+      <button type="submit" class="btn btn-sm btn-success btn-block">
         Buy
       </button>
     </div>
   </div>
+  </div>
+  
 
 </div>

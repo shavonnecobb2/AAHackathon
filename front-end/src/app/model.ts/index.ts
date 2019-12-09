@@ -3,3 +3,4 @@ export * from './duration';
 export * from './flight';
 export * from './origin';
 export * from './flight';
+export * from './itinerary';
