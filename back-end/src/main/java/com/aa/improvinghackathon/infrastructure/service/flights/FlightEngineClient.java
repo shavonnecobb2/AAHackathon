@@ -48,7 +48,7 @@ public class FlightEngineClient {
     }
 
     private com.aa.improvinghackathon.domain.Location mapLocation(final Location serviceLocation) {
-        return new com.aa.improvinghackathon.domain.Location(serviceLocation.getCity(), serviceLocation.getCity());
+        return new com.aa.improvinghackathon.domain.Location(serviceLocation.getCity(), serviceLocation.getCode());
     }
 
 }
