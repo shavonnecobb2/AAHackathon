@@ -17,8 +17,4 @@ export class Flight {
         this.aircraftModel = flight.aircraftModel;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5ef5d69b1e04dffba14119bd98866a4baa5bdd7c
