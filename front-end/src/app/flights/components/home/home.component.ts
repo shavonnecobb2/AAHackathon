@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'; 
 import { HttpClient } from '@angular/common/http';  
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { FlightsService } from 'src/app/service';
+import { Flight } from 'src/app/model.ts';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +11,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class HomeComponent implements OnInit { 
 
+  flights: Flight[];
   form: FormGroup;
 
   constructor(private fbuilder: FormBuilder, 
-    private http: HttpClient) { }
+    private flightsService: FlightsService) { }
 
   ngOnInit() {
     this.form = this.fbuilder.group({
@@ -28,10 +31,7 @@ export class HomeComponent implements OnInit {
 
     let serializedForm = JSON.stringify(formObj); 
 
-    this.http.post("localhost:4200/api", serializedForm)
-    .subscribe(
-      data => console.log("success!", data), 
-      error => console.error("Error: ")
-    );
+    this.flightsService.search(serializedForm)
+      .then(flights => this.flights = flights);
   }
 }
