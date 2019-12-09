@@ -8,7 +8,7 @@ export class Flight {
     destination: Destination;
     duration: Duration;
     aircraftModel: string;
-    
+
     constructor(flight: Flight){
         this.flightNum = flight.flightNum;
         this.origin = flight.origin;
@@ -16,4 +16,6 @@ export class Flight {
         this.duration = flight.duration;
         this.aircraftModel = flight.aircraftModel;
     }
+
 }
+
