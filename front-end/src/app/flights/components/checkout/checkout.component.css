@@ -17,7 +17,7 @@
 
 .cust-info {
   margin-top: 130px;
-  marign-left: 30px;
+  margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 45px;
   padding: 10px;
@@ -25,7 +25,7 @@
 
 .aa-table {
   margin-top: 70px;
-  marign-left: 30px;
+  margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 45px;
   padding: 10px;
@@ -34,4 +34,8 @@
 .aa-price {
   margin: 10px;
   padding: 10px;
+}
+
+.aa-btn {
+  margin-left: 50px;
 }
