@@ -6,7 +6,11 @@ export class Flight {
     flightNum: string;
     origin: Origin;
     destination: Destination;
+<<<<<<< HEAD
     duration: Duration;
+=======
+    duration: Duration; 
+>>>>>>> bb0fbabea9d8a5b0fb82eb8487f4ddf7d362e50e
     aircraftModel: string;
     
     constructor(flight: Flight){
