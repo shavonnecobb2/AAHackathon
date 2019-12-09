@@ -1,0 +1,37 @@
+.aa-container {
+/* text-align: center; */
+  font-family: arial;
+}
+
+.aa-header {
+  /* background-color: rgb(52, 107, 235, 0.65); */
+  border: 1px solid;
+  font-size: 45px;
+  height: 100px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.cust-info {
+  margin-top: 70px;
+  marign-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 45px;
+  padding: 10px;
+}
+
+/* .aa-table {
+  border: 1px solid;
+} */
+
+.flight-info{
+  margin: 30px;
+  padding: 10px;
+}
+
+/* #aa-flight-info {
+  font-size: 25px;
+} */
