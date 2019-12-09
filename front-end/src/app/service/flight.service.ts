@@ -15,7 +15,12 @@ export class FlightsService {
     return this.httpClient.post<Flight[]>("localhost:4200/flights/search", searchParams)
       .toPromise()
       .then(flights => (flights || []).map(flight => new Flight(flight)));
-  }
+  } 
+
+  confirm(flightId: number): Promise<Flight> { 
+    return this.httpClient.get<Flight>(`localhost:4200/flights/confirm/${flightId}`)
+  .toPromise()
+  .then(flight => new Flight(flight)); }
 
 //   create(account: Account): Promise<Account> {
 //     return this.httpClient.post<IAccount>(`${this.baseUrl}/directory/accounts`, account)
