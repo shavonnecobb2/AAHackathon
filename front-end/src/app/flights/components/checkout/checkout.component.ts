@@ -14,12 +14,12 @@ export class CheckoutComponent implements OnInit {
 
   flight: Flight;  
   checkoutForm: FormGroup; 
-  formBuilder: FormBuilder;
   firstName: string; 
   lastName: string; 
   email: string; 
   
-  constructor(private flightService : FlightsService) { }
+  constructor(private fBuilder: FormBuilder,
+    private flightService : FlightsService) { }
 
   ngOnInit() {  
     this.flightService.confirm(this.flightId).then(flight => {
@@ -29,23 +29,23 @@ export class CheckoutComponent implements OnInit {
 
     });
     
-    this.checkoutForm = this.formBuilder.group({
-      firstName: this.firstName,
-      lastName: this.lastName, 
-      email: this.email
+    this.checkoutForm = this.fBuilder.group({
+      firstName: '',
+      lastName: '', 
+      email: ''
     }); 
     
   } 
 
-  // save() {
-  //   // const value = this.checkoutForm.value;
+  save() {
+    // const value = this.checkoutForm.value;
 
-  //   // this.checkoutForm.firstName = value.firstName; 
-  //   // this.checkoutForm.lastName = value.lastName;
-  //   // this.checkoutForm.email = value.email;
+    // this.checkoutForm.firstname = value.firstName; 
+    // this.checkoutForm.lastName = value.lastName;
+    // this.checkoutForm.email = value.email;
 
-  //   // this.onSave.emit(this.checkoutForm);
-  // } 
+    // this.onSave.emit(this.checkoutForm);
+  } 
 
 
 
