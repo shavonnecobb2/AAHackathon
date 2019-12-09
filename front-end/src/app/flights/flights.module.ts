@@ -4,10 +4,6 @@ import * as components from './components';
 import { FlightsRoutingModule } from './flights-routing.module'
 
 
-import {AppRoutingModule} from './flights-routing.module';
-
-import * as components from './components';
-
 
 @NgModule({
   declarations: [
