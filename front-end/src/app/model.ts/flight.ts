@@ -16,5 +16,4 @@ export class Flight {
         this.duration = flight.duration;
         this.aircraftModel = flight.aircraftModel;
     }
-
 }
